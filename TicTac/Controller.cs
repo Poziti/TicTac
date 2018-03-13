@@ -15,31 +15,35 @@ namespace TicTac
             Resource mResource = ((State)state).Resource;
             int count = ((State)state).Count;
 
-            //lock (mResource)
-            //{
+            lock (mResource)
+            {
                 for (int i = 0; i < count; i++)
                 {
                     try
                     {
-                        /*while (mId != mResource.getState())
+                        while (mId != mResource.getState())
                         {
                             Monitor.Wait(mResource);
-                        }*/
+                        }
                         if (mId == 1)
                         {
-                            mResource.Tic();
+                            mResource.Tic(i);
+                        }
+                        else if (mId == 2)
+                        {
+                            mResource.Tuc();
                         }
                         else
                         {
                             mResource.Tak();
                         }
-                        //Monitor.Pulse(mResource);
+                        Monitor.PulseAll(mResource);
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine("Some error!" + "Details:\n" + ex);
                     }
-                //}
+                }
             }
         }
     }

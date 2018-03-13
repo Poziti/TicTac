@@ -12,9 +12,14 @@ namespace TicTac
 
         public int getState() { return state; }
 
-        public void Tic(){
-            Console.Write("Tic-");
+        public void Tic(int i){
+            Console.Write((i+1).ToString() + " Tic-");
             state = 2;
+        }
+        public void Tuc()
+        {
+            Console.Write("Tuc-");
+            state = 3;
         }
         public void Tak(){
             Console.WriteLine("Tak");
